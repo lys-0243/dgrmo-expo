@@ -16,7 +16,6 @@ export const users = [
 export function UserIsLogged(setValue?: boolean) {
   let isLogged = false;
   setValue ? (isLogged = setValue) : (isLogged = false);
-  console.log(setValue);
 
   return isLogged;
 }

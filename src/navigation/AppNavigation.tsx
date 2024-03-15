@@ -6,12 +6,10 @@ import OnBoarding from "../screens/OnBoarding";
 import Home from "../screens/Home";
 import { UserIsLogged } from "../store/users";
 import AuthNavigation from "./AuthNavigation";
-// import { isLogged } from "../store/users";
 
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigation() {
-  const isLogged = UserIsLogged();
   return (
     <Stack.Navigator
       initialRouteName="Splash"

@@ -1,8 +1,14 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import colors from "../config/colors";
+import styles, { width } from "../config/styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function User() {
+export default function User({ navigation }: any) {
+  const handleSubmit = async () => {
+    await AsyncStorage.removeItem("user");
+    navigation.navigate("Logout");
+  };
   return (
     <View style={css.container}>
       <Text
@@ -23,6 +29,17 @@ export default function User() {
       >
         On va permettre à l'agent de voir ses informations
       </Text>
+      <View style={{ marginBottom: 80, marginTop: 20, width: width - 40 }}>
+        <TouchableOpacity
+          style={{
+            ...styles.btnBlue,
+            width: "100%",
+          }}
+          onPress={() => handleSubmit()}
+        >
+          <Text style={styles.textBtn}>Deconnecter</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

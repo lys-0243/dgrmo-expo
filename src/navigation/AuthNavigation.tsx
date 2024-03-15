@@ -9,8 +9,12 @@ import New from "../screens/New";
 import User from "../screens/User";
 import List from "../screens/List";
 import HomeScreen from "../screens/Home";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AddCar from "../screens/AddCar";
+import AppNavigation from "./AppNavigation";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function AuthNavigation() {
   return (
@@ -59,6 +63,7 @@ export default function AuthNavigation() {
         name={"New"}
         component={New}
         options={{
+          tabBarStyle: { display: "none" },
           tabBarIcon: ({ focused }) => (
             <View
               style={{
@@ -121,6 +126,22 @@ export default function AuthNavigation() {
               )}
             </View>
           ),
+        }}
+      />
+      <Tab.Screen
+        name={"AddCar"}
+        component={AddCar}
+        options={{
+          tabBarStyle: { display: "none" },
+          tabBarButton: () => null,
+        }}
+      />
+      <Tab.Screen
+        name={"Logout"}
+        component={AppNavigation}
+        options={{
+          tabBarStyle: { display: "none" },
+          tabBarButton: () => null,
         }}
       />
     </Tab.Navigator>

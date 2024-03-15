@@ -13,7 +13,8 @@ import colors from "../config/colors";
 import { Icon, IconElement, Input } from "@ui-kitten/components";
 import { Feather } from "@expo/vector-icons";
 import styles from "../config/styles";
-import { UserIsLogged, users } from "../store/users";
+import { APIuri } from "../config/constant";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }: any) {
   const { width } = useWindowDimensions();
@@ -23,15 +24,28 @@ export default function Login({ navigation }: any) {
     password: "",
   });
 
-  const handleSubmit = () => {
-    const user = users.find(
-      (user) => user.email === values.email && user.password === values.password
-    );
-    if (user) {
-      UserIsLogged(true);
-      navigation.navigate("Home");
-    } else {
-      alert("Email ou mot de passe incorrect");
+  const handleSubmit = async () => {
+    try {
+      const user = await fetch(`${APIuri}/account/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      });
+      const data = await user.json();
+      if (user.status === 200) {
+        try {
+          const jsonValue = JSON.stringify(data.data);
+          await AsyncStorage.setItem("user", jsonValue);
+        } catch (e) {}
+        navigation.navigate("Home");
+      } else alert("Email ou mot de passe incorrect");
+    } catch (error) {
+      console.error(error);
     }
   };
 

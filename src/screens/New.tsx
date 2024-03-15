@@ -38,7 +38,7 @@ export default function New({ navigation }: any) {
   const [date, setDate] = React.useState(new Date());
 
   const handleSubmit = () => {
-    alert("Enregistré");
+    navigation.navigate("AddCar");
   };
 
   const handleCHange = (name: string, value: any) => {
