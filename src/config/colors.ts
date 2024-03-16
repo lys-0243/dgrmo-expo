@@ -9,6 +9,8 @@ const colors = {
   semLightGray: "#68C5DB",
   white: "#FFF",
   yellow: "#f7d618",
+  yellowSmooth: "#fff2a4",
+  blueSmooth: "#e6f7ff",
 };
 
 export default colors;

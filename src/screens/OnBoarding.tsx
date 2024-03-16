@@ -19,7 +19,7 @@ export default function OnBoarding({ navigation }: any) {
       source={require("../../assets/img/splash.jpg")}
       style={{ flex: 1 }}
     >
-      <StatusBar style="auto" />
+      <StatusBar style="dark" translucent />
 
       <View style={{}}>
         <Image

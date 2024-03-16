@@ -21,6 +21,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: width - 60,
   },
+  btnDark: {
+    height: 50,
+    backgroundColor: colors.darkGray,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    width: width - 60,
+  },
   btnBlue: {
     height: 50,
     backgroundColor: colors.blue,

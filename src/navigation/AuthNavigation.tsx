@@ -2,19 +2,17 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-// import Home from "../screens/Home";
 import colors from "../config/colors";
 import Search from "../screens/Search";
 import New from "../screens/New";
 import User from "../screens/User";
 import List from "../screens/List";
 import HomeScreen from "../screens/Home";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AddCar from "../screens/AddCar";
 import AppNavigation from "./AppNavigation";
+import DriverDetails from "../screens/DriverDetails";
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
 export default function AuthNavigation() {
   return (
@@ -47,6 +45,14 @@ export default function AuthNavigation() {
         name={"Search"}
         component={Search}
         options={{
+          tabBarStyle: { display: "none" },
+          tabBarButton: () => null,
+        }}
+      />
+      {/* <Tab.Screen
+        name={"Search"}
+        component={Search}
+        options={{
           tabBarIcon: ({ focused }) => (
             <View>
               {focused ? (
@@ -57,24 +63,26 @@ export default function AuthNavigation() {
             </View>
           ),
         }}
-      />
+      /> */}
 
       <Tab.Screen
         name={"New"}
         component={New}
         options={{
+          title: "Ajouter un nouveau chaffeur",
+
           tabBarStyle: { display: "none" },
           tabBarIcon: ({ focused }) => (
             <View
               style={{
                 backgroundColor: colors.white,
                 ...css.shadow,
-                borderRadius: 9999,
-                width: 70,
-                height: 70,
+                borderRadius: 19,
+                width: 60,
+                height: 60,
                 right: 7,
                 position: "absolute",
-                bottom: 30,
+                bottom: 10,
                 justifyContent: "center",
                 alignItems: "center",
               }}
@@ -82,13 +90,13 @@ export default function AuthNavigation() {
               {focused ? (
                 <Feather
                   name="plus-circle"
-                  size={60}
+                  size={40}
                   color={colors.secondary}
                 />
               ) : (
                 <Feather
                   name="plus-circle"
-                  size={60}
+                  size={40}
                   color={colors.lightBlue}
                 />
               )}
@@ -137,6 +145,14 @@ export default function AuthNavigation() {
         }}
       />
       <Tab.Screen
+        name={"DriverDetails"}
+        component={DriverDetails}
+        options={{
+          tabBarStyle: { display: "none" },
+          tabBarButton: () => null,
+        }}
+      />
+      <Tab.Screen
         name={"Logout"}
         component={AppNavigation}
         options={{
@@ -151,13 +167,9 @@ export default function AuthNavigation() {
 const css = StyleSheet.create({
   tabBottomStyle: {
     position: "absolute",
-    bottom: 10,
-    left: 10,
-    right: 10,
-    elevation: 0,
+
     backgroundColor: "#fff",
-    borderRadius: 15,
-    height: 70,
+    height: 50,
 
     justifyContent: "center",
   },
